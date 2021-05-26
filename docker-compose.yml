@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8085
+    volumes:
+    - .:/hackernews
+    ports:
+    - "8085:8085"
+    env_file:
+      - .env
