@@ -31,6 +31,7 @@ class Mutation(graphene.ObjectType):
    
 
 class Query(graphene.ObjectType):
+    me = graphene.Field(UserType)
     users = graphene.List(UserType)
 
     def resolve_users(self, info):
@@ -39,7 +40,7 @@ class Query(graphene.ObjectType):
     def resolve_me(self, info):
         user = info.context.user
         if user.is_anonymous:
-            raise Exceptio('Not logged in')
+            raise Exception('Not logged in')
 
         return user
 
